@@ -103,8 +103,17 @@ add_library(octovis-static STATIC ${viewerlib_SRCS})
 target_link_libraries(octovis-static)
 set_target_properties(octovis-static PROPERTIES OUTPUT_NAME octovis)
 
+# BEGIN SMG
+FIND_LIBRARY(QT5CORE_LIBRARY_DEBUG Qt5Cored HINTS "D:/Qt/5.14.2/msvc2017_64/lib")
+FIND_LIBRARY(QT5CORE_LIBRARY_RELEASE Qt5Core HINTS "D:/Qt/5.14.2/msvc2017_64/lib")
+SET(QT5CORE_LIBRARY debug ${QT5CORE_LIBRARY_DEBUG} optimized ${QT5CORE_LIBRARY_RELEASE})
+# END SMG
+
 add_library(octovis-shared SHARED ${viewerlib_SRCS})
 target_link_libraries(octovis-shared 
+# BEGIN SMG
+  ${QT5CORE_LIBRARY}
+# END SMG
   ${OPENGL_gl_LIBRARY} 
   ${OPENGL_glu_LIBRARY} 
   ${OCTOMAP_LIBRARIES}

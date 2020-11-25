@@ -1,0 +1,10 @@
+1) QGLViewer needs to be built with QT Creator
+
+2) Various fixes are needed for octovis itself:
+
+octovis-shared:
+* Link D:\Qt\5.14.2\msvc2017_64\lib\Qt5Core.lib
+octovis:
+* Define QT_NO_FLOAT16_OPERATORS
+* Copy the Qt DLLs to the executable directory (otherwise the Anaconda ones are found instead)
+* Add QT_PLUGIN_PATH=D:\Qt\5.14.2\msvc2017_64\plugins to the environment

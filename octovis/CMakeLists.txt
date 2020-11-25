@@ -37,6 +37,12 @@ foreach( OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES} )
   SET( CMAKE_RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} ${BASE_DIR}/bin )
 endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )
 
+# BEGIN SMG
+IF(MSVC_IDE)
+  ADD_DEFINITIONS(-DQT_NO_FLOAT16_OPERATORS)
+ENDIF()
+# END SMG
+
 # We need the main octomap library to link against (same version as octovis)
 # Look at parent directory by default, in case the complete distribution
 # (octomap & octovis together) is built.
