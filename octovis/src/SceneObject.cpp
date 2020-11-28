@@ -36,11 +36,21 @@ namespace octomap {
   }
 
   void SceneObject::heightMapColor(double h, GLfloat* glArrayPos) const {
+#if 0
     if (m_zMin >= m_zMax)
       h = 0.5;
     else{
       h = (1.0 - std::min(std::max((h-m_zMin)/ (m_zMax - m_zMin), 0.0), 1.0)) *0.8;
     }
+#else
+    // BEGIN SMG
+    if (m_yMin >= m_yMax)
+      h = 0.5;
+    else{
+      h = (1.0 - std::min(std::max((h-m_yMin)/ (m_yMax - m_yMin), 0.0), 1.0)) *0.8;
+    }
+    // END SMG
+#endif
 
     // blend over HSV-values (more colors)
     double r, g, b;

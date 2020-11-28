@@ -179,6 +179,12 @@ namespace octomap {
     octree.getMetricMin(minX, minY, minZ);
     octree.getMetricMax(maxX, maxY, maxZ);
 
+// BEGIN SMG
+    // set min/max Y for color height map
+    m_yMin = minY;
+    m_yMax = maxY;
+// END SMG
+
     // set min/max Z for color height map
     m_zMin = minZ;
     m_zMax = maxZ;
@@ -457,7 +463,13 @@ namespace octomap {
       if (m_colorMode == CM_GRAY_HEIGHT)
         SceneObject::heightMapGray(v.first.z(), *glColorArray + colorIdx);  // sets r,g,b
       else
+#if 0
         SceneObject::heightMapColor(v.first.z(), *glColorArray + colorIdx);   // sets r,g,b
+#else
+        // BEGIN SMG
+        SceneObject::heightMapColor(-v.first.y(), *glColorArray + colorIdx);   // sets r,g,b
+        // END SMG
+#endif
       // set Alpha value:
       (*glColorArray)[colorIdx + 3] = m_alphaOccupied;
       colorIdx += 4;

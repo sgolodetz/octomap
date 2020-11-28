@@ -82,6 +82,10 @@ namespace octomap {
     /// (glArrayPos needs to have at least size 3!)
     void heightMapColor(double h, GLfloat* glArrayPos) const;
     void heightMapGray(double h, GLfloat* glArrayPos) const;
+// BEGIN SMG
+    double m_yMin;
+    double m_yMax;
+// END SMG
     double m_zMin;
     double m_zMax;
     ColorMode m_colorMode;
